@@ -1,0 +1,80 @@
+
+
+html {
+  background: url('./images/background.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+@keyframes fadeIn {
+  from {top: 20%; opacity: 0;}
+  to {top: 100; opacity: 1;}
+  
+}
+
+@-webkit-keyframes fadeIn {
+  from {top: 20%; opacity: 0;}
+  to {top: 100; opacity: 1;}
+  
+}
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  animation: fadeIn 1000ms ease;
+  -webkit-animation: fadeIn 1000ms ease;
+  
+}
+
+h1 {
+  font-size: 50px;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.dot {
+  color: #A19DCA;
+}
+
+p {
+  text-align: center;
+  margin: 18px;
+  font-family: 'Muli', sans-serif;
+  font-weight: normal;
+  
+}
+
+.icons {
+  text-align: center;
+}
+
+.icons i {
+  height: 30px;
+  width: 30px;
+  color: black;
+  font-size: 2rem;
+  padding: 13px;
+  margin: 0 10px;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  transition: all 200ms ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.icons i:hover, .icons i:active {
+  background: none;
+  cursor: pointer !important;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  text-decoration: none;
+  
+}
