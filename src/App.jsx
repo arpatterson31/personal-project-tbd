@@ -1,15 +1,44 @@
 import './App.css';
+import Home from './pages/Home';
+import Projects from './pages/Projects';
+import Profile from './pages/Profile';
+import TermsConditions from './pages/TermsConditions';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="wrapper">
-      <h1>coming soon<span className="dot">...</span></h1>
-      <p>A totally awesome website</p>
-      <div className="icons">
-        <a href="https://github.com/arpatterson31"><i className="fa-brands fa-github-alt"></i></a>
-        <a href="https://www.linkedin.com/in/audrey-patterson31/"><i className="fa-brands fa-linkedin"></i></a>
-      </div>
-    </div>
+    <>
+      <BrowserRouter>
+       <Header />
+        <Routes>
+          <Route 
+          exact 
+          path="/" 
+          element={<Home />}
+          />
+          <Route 
+          path="/project_board"
+          element={<Projects />}
+          />
+          <Route 
+          path="/profile"
+          element={<Profile />}
+          />
+          <Route 
+          path="/terms_and_conditions"
+          element={<TermsConditions />}
+          />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   )
 }
 
