@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Typography from '@mui/material/Typography';
@@ -17,7 +17,7 @@ const LinkBehavior = React.forwardRef((props, ref) => {
 const Copyright = () => {
   return (
     <Typography variant="body2">
-      Copyright © <Link href="#">Will put website</Link> {new Date().getFullYear()}
+      Copyright © <Link href="#">DevConnect</Link> {new Date().getFullYear()}
     </Typography>
   )
 }
@@ -28,30 +28,38 @@ const Footer = () => {
       component="footer"
       className="footer-basic"
     >
-      <Container maxWidth="sm'" className="socials">
-        <GitHubIcon />
-        <LinkedInIcon />
-      </Container>
+      <Grid container spacing={5} className="socials">
+        <Grid item >
+          <Link href="https://github.com/arpatterson31/personal-project-tbd">
+            <GitHubIcon sx={{ fontSize: 40, color: 163645 }} />
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="https://www.linkedin.com/in/audrey-patterson31/">
+            <LinkedInIcon sx={{ fontSize: 40 }} />
+          </Link>
+        </Grid>
+      </Grid>
       <Divider />
-      <Container maxWidth="sm">
-        <Box
-          component="ul"
-        >
-          <Typography variant="body1" component="li">
+      <Grid container spacing={2} className="footer-nav">
+        <Grid container item spacing={3} className="nav-links">
+          <Grid item>
             <Link component={LinkBehavior} href="/">Home</Link>
-          </Typography>
-          <Typography variant="body1" component="li">
+          </Grid>
+          <Grid item>
             <Link component={LinkBehavior} href="#">About</Link>
-          </Typography>
-          <Typography variant="body1" component="li">
+          </Grid>
+          <Grid item>
             <Link component={LinkBehavior} href="/terms_and_conditions">Terms & Conditions</Link>
-          </Typography>
-          <Typography variant="body1" component="li">
+          </Grid>
+          <Grid item>
             <Link component={LinkBehavior} href="#">Privacy</Link>
-          </Typography>
-        </Box>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid container className="copyright">
         <Copyright />
-      </Container>
+      </Grid>
     </Box>
   )
 }
