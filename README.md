@@ -1,6 +1,6 @@
-# Name TBD - WIP Personal project
+# DevConnect - WIP Personal project
 
-Welcome to **Name TBD**, an innovative platform tailored for developers seeking to collaborate on projects and engage with like-minded professionals. **Name TBD** fosters an environment where developers can create and showcase their projects while finding potential collaborators to join their ventures. By joining **Name TBD**, make new friends and connections within the developer community, search and contribute to projets that can enrich your portfolio, and make a lasting impact on exciting projects.
+Welcome to DevConnect, an innovative platform tailored for developers seeking to collaborate on projects and engage with like-minded professionals. DevConnect fosters an environment where developers can create and showcase their projects while finding potential collaborators to join their ventures. By joining DevConnect, make new friends and connections within the developer community, search and contribute to projets that can enrich your portfolio, and make a lasting impact on exciting projects.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ Welcome to **Name TBD**, an innovative platform tailored for developers seeking 
 
 ### WIP
 
-**Name TBD** boasts an array of compelling features:
+DevConnect boasts an array of compelling features:
 
 - Project Creation: Seamlessly create and manage your projects, describing the purpose, scope, and technologies involved.
 - Collaborator Search: Find talented developers interested in contributing their skills to your project.
