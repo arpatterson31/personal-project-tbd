@@ -1,14 +1,16 @@
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import Box from '@mui/material/Box'
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import '../styles/TermsConditions.css';
 
 const TermsConditions = () => {
   return (
-    <>
+    <Container >
       <Typography variant="h2">Terms and Conditions</Typography>
       <Typography variant="subtitle1">Effective Date: July 31, 2023</Typography>
 
-      <Divider style={{ margin: '16px 0' }} />
+      <Divider style={{ margin: '16px 0', background: '#F3DEE5' }} />
 
       <Typography variant="h4">1. Acceptance of Terms</Typography>
 
@@ -92,7 +94,7 @@ const TermsConditions = () => {
 
       <Typography variant="h3">Comments and Concerns</Typography>
       <Typography>All feedback, comments, requests for technical support, and other communications relating to DevConnect should be directed to <a title="Email to DevConnect Support" href="mailto:audrey.patterson31@gmail.com">our support team</a>.</Typography>
-    </>
+    </Container>
   )
 }
 

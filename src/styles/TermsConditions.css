@@ -1,0 +1,19 @@
+.MuiTypography-h4, .MuiTypography-h2, .MuiTypography-h3, .MuiTypography-h5 {
+  color: #163645;
+  font-family: 'Arvo', serif;
+}
+
+.MuiTypography-body1 {
+  color: #163645;
+  font-family: 'Lato', sans-serif;
+  margin: 16px 0;
+}
+
+.MuiTypography-h4 + .MuiTypography-h5 {
+  margin-top: 10px;
+}
+
+.MuiTypography-subtitle1 {
+  color: #163645;
+  font-family: 'Lato', sans-serif;
+}
