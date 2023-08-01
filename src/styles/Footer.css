@@ -1,0 +1,32 @@
+.footer-basic {
+  padding:40px 0;
+  background-color: #9BABBA;
+  color: #163645;
+}
+
+.socials {
+  justify-content: center;
+  color: #163645;
+  padding-bottom:25px;
+  cursor: pointer;
+}
+
+.footer-nav {
+  padding-top: 20px;
+  flex-direction: column;
+}
+
+.nav-links {
+  justify-content: center;
+}
+
+.nav-links a, a:visited, a:active {
+  color: #163645;
+  text-decoration: none;
+
+}
+
+.copyright {
+  justify-content: center;
+  margin-top: 10px;
+}

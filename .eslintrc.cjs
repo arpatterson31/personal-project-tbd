@@ -16,6 +16,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'react/prop-types': 'off'
+    'react/prop-types': 'off',
+    'react/display-name': [ 'off', {ignoreTranspilerName: true, "checkContextObjects":false }]
+      
   },
 }
