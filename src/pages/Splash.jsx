@@ -4,7 +4,7 @@ const Splash = () => {
   return (
     <>
     <h1>Splash page for now..</h1>
-    <Login />
+    <Login text="Join the Community / Sign Up"/>
     </>
   )
 }
