@@ -1,5 +1,7 @@
 import './App.css';
+import { useAuth0 } from "@auth0/auth0-react";
 import Home from './pages/Home';
+import Splash from './pages/Splash';
 import Projects from './pages/Projects';
 import Profile from './pages/Profile';
 import TermsConditions from './pages/TermsConditions';
@@ -38,33 +40,41 @@ const theme = createTheme({
 });
 
 function App() {
+
+  const { isAuthenticated } = useAuth0();
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/project_board"
-              element={<Projects />}
-            />
-            <Route
-              path="/profile"
-              element={<Profile />}
-            />
-            <Route
-              path="/terms_and_conditions"
-              element={<TermsConditions />}
-            />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
+        {
+          isAuthenticated ?
+            <BrowserRouter>
+              <Header />
+              <Routes>
+                <Route
+                  exact
+                  path="/"
+                  element={<Home />}
+                />
+                <Route
+                  path="/project_board"
+                  element={<Projects />}
+                />
+                <Route
+                  path="/profile"
+                  element={<Profile />}
+                />
+                <Route
+                  path="/terms_and_conditions"
+                  element={<TermsConditions />}
+                />
+              </Routes>
+              <Footer />
+            </BrowserRouter>
+            :
+            <Splash />
+        }
       </ThemeProvider>
     </>
   )
