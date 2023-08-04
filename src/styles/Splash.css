@@ -1,0 +1,24 @@
+#splash-main {
+  background-color: #FFDEE9;
+  background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+  height: 100vh;
+  width: 100%;
+  font-size: calc(15px + 0.390625vw);
+}
+
+h2 span {
+  background-size: 100% 15%;
+  background-repeat: repeat-x;
+  background-position: left 0% bottom 0%;
+  background-image: linear-gradient(181deg, #73DBDA 0%, #73DBDA 50%, transparent 54%, transparent 100%);
+}
+
+button {
+  letter-spacing: 1px;
+  padding: 13px 50px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+
