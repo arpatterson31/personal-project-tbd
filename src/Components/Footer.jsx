@@ -47,7 +47,7 @@ const Footer = () => {
             <Link component={LinkBehavior} href="/">Home</Link>
           </Grid>
           <Grid item>
-            <Link component={LinkBehavior} href="#">About</Link>
+            <Link component={LinkBehavior} href="/about">About</Link>
           </Grid>
           <Grid item>
             <Link component={LinkBehavior} href="/terms_and_conditions">Terms & Conditions</Link>
