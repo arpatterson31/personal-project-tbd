@@ -3,7 +3,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Home from './pages/Home';
 import Splash from './pages/Splash';
 import Projects from './pages/Projects';
-import Profile from './pages/Profile';
+import Profile from './pages/Profile'; 
+import About from './pages/About';
+import Community from './pages/Community';
 import TermsConditions from './pages/TermsConditions';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
@@ -41,7 +43,7 @@ const theme = createTheme({
 
 function App() {
 
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <>
@@ -50,7 +52,7 @@ function App() {
         {
           isAuthenticated ?
             <BrowserRouter>
-              <Header />
+              <Header user={user}/>
               <Routes>
                 <Route
                   exact
@@ -58,12 +60,25 @@ function App() {
                   element={<Home />}
                 />
                 <Route
-                  path="/project_board"
+                  exact
+                  path="/home"
+                  element={<Home />}
+                />
+                <Route
+                  path="/projects"
                   element={<Projects />}
                 />
                 <Route
+                  path="/community"
+                  element={<Community />}
+                />
+                <Route
                   path="/profile"
-                  element={<Profile />}
+                  element={<Profile user={user}/>}
+                />
+                <Route
+                  path="/about"
+                  element={<About />}
                 />
                 <Route
                   path="/terms_and_conditions"

@@ -4,17 +4,19 @@ import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+// import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import TerminalIcon from '@mui/icons-material/Terminal';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import LoggedInPic from './LoggedInPic';
-import Login from './Login';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const settings = ['Home','Profile', 'Logout'];
+const settings = ['Home', 'Profile', 'Logout'];
+const pages = ['Projects','Community', 'Profile']
 
 const theme = createTheme({
   palette: {
@@ -24,14 +26,23 @@ const theme = createTheme({
   }
 })
 
-const Header = () => {
+const Header = ({ user }) => {
 
-  const { isAuthenticated, logout } = useAuth0();
+  const { logout } = useAuth0();
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -43,7 +54,8 @@ const Header = () => {
       <AppBar position="sticky" color="secondary">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <ConnectWithoutContactIcon sx={{ fontSize: 40, display: { xs: 'flex', md: 'flex' }, mr: 1 }} />
+            {/* <ConnectWithoutContactIcon sx={{ fontSize: 40, display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+            <TerminalIcon sx={{ fontSize: 40, display: { xs: 'none', md: 'flex' }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
@@ -51,25 +63,89 @@ const Header = () => {
               to="/"
               sx={{
                 mr: 2,
-                display: { xs: 'flex', md: 'flex' },
+                display: { xs: 'none', md: 'flex' },
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none',
-                flexGrow: 1
               }}
             >
               DevConnect
             </Typography>
+
+
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" component={Link} to={`/${page.toLowerCase()}`}>{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          <TerminalIcon sx={{ fontSize: 40, display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <ConnectWithoutContactIcon sx={{ fontSize: 40, display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          <Typography
+              variant="h5"
+              noWrap
+              component={Link}
+              to="/"
+              sx={{
+                mr: 2,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none'
+              }}
+            >
+              DevConnect
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Typography
+                key={page}
+                component={Link}
+                to={`/${page.toLowerCase()}`}
+                sx={{ my: 2, color: 'white', display: 'block', mr: 8 }}
+              >
+                {page}
+              </Typography>
+            ))}
+          </Box>
             <Box sx={{ flexGrow: 0 }}>
-                {
-                  isAuthenticated ?
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                   <LoggedInPic /> 
-                  </IconButton>
-                  :
-                  <Login />
-                }   
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <LoggedInPic user={user} />
+              </IconButton>
               <Menu
                 sx={{ mt: '45px' }}
                 id="menu-appbar"
@@ -87,14 +163,14 @@ const Header = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  setting === 'Logout' ? 
-                  <MenuItem key={setting} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-                    <Typography textAlign="center" style={{textDecoration: 'underline'}}>{setting}</Typography>
-                  </MenuItem>
-                  :
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" component={Link} to={`/${setting.toLowerCase()}`}>{setting}</Typography>
-                  </MenuItem>
+                  setting === 'Logout' ?
+                    <MenuItem key={setting} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                      <Typography textAlign="center" style={{ textDecoration: 'underline' }}>{setting}</Typography>
+                    </MenuItem>
+                    :
+                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                      <Typography textAlign="center" component={Link} to={`/${setting.toLowerCase()}`}>{setting}</Typography>
+                    </MenuItem>
                 ))}
               </Menu>
             </Box>
