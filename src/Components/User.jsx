@@ -1,10 +1,10 @@
 import { Box, Paper, AppBar, Toolbar, Grid } from '@mui/material';
 import { Close, Minimize, CropSquare } from '@mui/icons-material';
 
-const CommunityMember = ({ data }) => {
+const User = ({ data }) => {
   console.log(data)
   return (
-    <Paper sx={{ m: 4, width: 800, height: 600, borderRadius: 10, border: '2px solid black', position: 'relative', overflow: 'hidden' }}>
+    <Paper sx={{ m: 4, width: 700, height: 500, borderRadius: 10, border: '2px solid black', position: 'relative', overflow: 'hidden' }}>
       <AppBar position="static" sx={{ backgroundColor: "#FDCDDD", boxShadow: 'none', borderBottom: '2px solid black', borderRadius: '10px 10px 0 0' }}>
         <Toolbar>
           <Box flexGrow={1} ml={2} fontWeight="bold" fontSize='2rem'>
@@ -45,17 +45,4 @@ const CommunityMember = ({ data }) => {
   );
 };
 
-export default CommunityMember;
-{/* <Grid
-container
-direction="column"
-justifyContent="flex-start"
-alignItems="flex-start"
->
-<Grid item>
-  <img style={{}} src={data.picture} alt={data.name} />
-</Grid>
-<Grid item>
-  <p>{data.email}</p>
-</Grid>
-</Grid> */}
+export default User;

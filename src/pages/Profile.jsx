@@ -1,4 +1,4 @@
-import CommunityMember from "../Components/CommunityMember";
+import User from '../Components/User';
 
 const Profile = ({ user }) => {
 
@@ -9,7 +9,7 @@ const Profile = ({ user }) => {
 
   return (
     <>
-      <CommunityMember data={user} />
+      <User data={user} />
     </>
   )
 };
