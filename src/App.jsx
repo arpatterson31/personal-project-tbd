@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect, useTransition } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
 import Home from './pages/Home';
