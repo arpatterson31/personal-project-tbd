@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-// import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -16,7 +15,7 @@ import LoggedInPic from './LoggedInPic';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const settings = ['Home', 'Profile', 'Logout'];
-const pages = ['Projects','Community', 'Profile']
+const pages = ['Projects', 'Community', 'Profile']
 
 const theme = createTheme({
   palette: {
@@ -26,7 +25,7 @@ const theme = createTheme({
   }
 })
 
-const Header = ({ user }) => {
+const Header = ({ currentUser }) => {
 
   const { logout } = useAuth0();
 
@@ -75,45 +74,56 @@ const Header = ({ user }) => {
 
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" component={Link} to={`/${page.toLowerCase()}`}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                }}
+              >
+                {pages.map((page) => (
+                  page === 'Profile' ?
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography
+                        textAlign="center"
+                        component={Link}
+                        to={`/${page.toLowerCase()}/${currentUser._id}`}
+                      >
+                        {page}
+                      </Typography>
+                    </MenuItem>
+                    :
+                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center" component={Link} to={`/${page.toLowerCase()}`}>{page}</Typography>
+                    </MenuItem>
+                ))}
+              </Menu>
+            </Box>
 
-          <TerminalIcon sx={{ fontSize: 40, display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          {/* <ConnectWithoutContactIcon sx={{ fontSize: 40, display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
-          <Typography
+            <TerminalIcon sx={{ fontSize: 40, display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+
+            <Typography
               variant="h5"
               noWrap
               component={Link}
@@ -131,20 +141,30 @@ const Header = ({ user }) => {
               DevConnect
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Typography
-                key={page}
-                component={Link}
-                to={`/${page.toLowerCase()}`}
-                sx={{ my: 2, color: 'white', display: 'block', mr: 8 }}
-              >
-                {page}
-              </Typography>
-            ))}
-          </Box>
+              {pages.map((page) => (
+                page === 'Profile' ?
+                  <Typography
+                    key={page}
+                    component={Link}
+                    to={`/profile/${currentUser._id}`}
+                    sx={{ my: 2, color: 'white', display: 'block', mr: 8 }}
+                  >
+                    {page}
+                  </Typography>
+                  :
+                  <Typography
+                    key={page}
+                    component={Link}
+                    to={`/${page.toLowerCase()}`}
+                    sx={{ my: 2, color: 'white', display: 'block', mr: 8 }}
+                  >
+                    {page}
+                  </Typography>
+              ))}
+            </Box>
             <Box sx={{ flexGrow: 0 }}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <LoggedInPic user={user} />
+                <LoggedInPic user={currentUser} />
               </IconButton>
               <Menu
                 sx={{ mt: '45px' }}
@@ -168,9 +188,14 @@ const Header = ({ user }) => {
                       <Typography textAlign="center" style={{ textDecoration: 'underline' }}>{setting}</Typography>
                     </MenuItem>
                     :
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center" component={Link} to={`/${setting.toLowerCase()}`}>{setting}</Typography>
-                    </MenuItem>
+                    setting === 'Profile' ?
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" component={Link} to={`/${setting.toLowerCase()}/${currentUser._id}`}>{setting}</Typography>
+                      </MenuItem>
+                      :
+                      <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" component={Link} to={`/${setting.toLowerCase()}`}>{setting}</Typography>
+                      </MenuItem>
                 ))}
               </Menu>
             </Box>

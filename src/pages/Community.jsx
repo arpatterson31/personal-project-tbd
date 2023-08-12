@@ -1,43 +1,15 @@
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import CommunityMember from '../Components/CommMember';
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
-const Community = () => {
+
+const Community = ({ users }) => {
 
   // TODO: Grab all the users from the db, 
   // TODO: store to state, 
   // TODO: render separate Community Member components to list all of our awesome users
-
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const url = `${SERVER_URL}/users`;
-        let response = await axios.get(url);
-        setUsers(response.data);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
-    fetchUsers();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Error: {error.message}</div>
-  }
-
 
   return (
     <Container maxWidth="xl">

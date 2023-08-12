@@ -2,7 +2,7 @@ import { Box, Paper, AppBar, Toolbar, Grid } from '@mui/material';
 import { Close, Minimize, CropSquare } from '@mui/icons-material';
 
 const User = ({ data }) => {
-  console.log(data)
+
   return (
     <Paper sx={{ m: 4, width: 700, height: 500, borderRadius: 10, border: '2px solid black', position: 'relative', overflow: 'hidden' }}>
       <AppBar position="static" sx={{ backgroundColor: "#FDCDDD", boxShadow: 'none', borderBottom: '2px solid black', borderRadius: '10px 10px 0 0' }}>

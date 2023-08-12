@@ -1,4 +1,6 @@
 import './App.css';
+import { useState, useEffect, useTransition } from 'react';
+import axios from 'axios';
 import { useAuth0 } from "@auth0/auth0-react";
 import Home from './pages/Home';
 import Splash from './pages/Splash';
@@ -16,6 +18,8 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 
 const theme = createTheme({
   typography: {
@@ -44,6 +48,25 @@ const theme = createTheme({
 function App() {
 
   const { isAuthenticated, user } = useAuth0();
+  const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const url = `${SERVER_URL}/users`;
+        let response = await axios.get(url);
+        setUsers(response.data);
+        let uniqueUser = response.data.find(person => person.email === user.email)
+        setCurrentUser(uniqueUser);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    fetchUsers();
+
+  },[user]);
+
 
   return (
     <>
@@ -52,7 +75,7 @@ function App() {
         {
           isAuthenticated ?
             <BrowserRouter>
-              <Header user={user}/>
+              <Header currentUser={currentUser}/>
               <Routes>
                 <Route
                   exact
@@ -70,11 +93,11 @@ function App() {
                 />
                 <Route
                   path="/community"
-                  element={<Community />}
+                  element={<Community users={users} />}
                 />
                 <Route
-                  path="/profile"
-                  element={<Profile user={user}/>}
+                  path="/profile/:id"
+                  element={<Profile users={users}/>}
                 />
                 <Route
                   path="/about"
