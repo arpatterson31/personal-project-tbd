@@ -8,7 +8,7 @@ const User = ({ data }) => {
       <AppBar position="static" sx={{ backgroundColor: "#FDCDDD", boxShadow: 'none', borderBottom: '2px solid black', borderRadius: '10px 10px 0 0' }}>
         <Toolbar>
           <Box flexGrow={1} ml={2} fontWeight="bold" fontSize='2rem'>
-            Hello! 👋 I&apos;m {data.name}
+            Hello! 👋 I&apos;m {data.firstName}
           </Box>
           <Minimize size="small" sx={{ backgroundColor: "white", border: '1px solid black', borderRadius: '3px', ml: -1, mr: 1 }} />
           <CropSquare size="small" sx={{ backgroundColor: "white", border: '1px solid black', borderRadius: '3px', mr: 1 }} />
